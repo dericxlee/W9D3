@@ -16,6 +16,13 @@ async function customFetch(url, options = {}) {
   }
 }
 
+export function fetchTweets(options = {}) {
+  const queryParams = new URLSearchParams(options);
+  return customFetch(`/tweets?${queryParams}`, {
+    method: 'GET'
+  });
+}
+
 export function followUser(id){
   return customFetch(`/users/${id}/follow`, {
     method: "POST"

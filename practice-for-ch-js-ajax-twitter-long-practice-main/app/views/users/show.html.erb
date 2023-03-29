@@ -11,7 +11,8 @@
     <% end %>
 
     <%= render "tweets/infinite_tweets", 
-      tweets: @user.page_of_tweets(type: :profile, limit: params[:limit])
+      tweets: @user.page_of_tweets(type: :profile, limit: params[:limit]),
+      type: 'profile'
     %>
   </article>
 
