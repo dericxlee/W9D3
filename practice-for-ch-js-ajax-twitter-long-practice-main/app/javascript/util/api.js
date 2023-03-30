@@ -34,3 +34,10 @@ export function unfollowUser(id){
     method: "DELETE"
   });
 }
+
+export function searchUsers(query) {
+  // const queryParams = new URLSearchParams(query);
+  return customFetch(`/users/search?query=${query}`, {
+    method: "GET"
+  });
+}

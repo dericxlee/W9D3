@@ -18,13 +18,23 @@ export default class UsersSearch {
 
   async handleInput() {
     // Your code here
+    const query = this.input.value;
+    this.debouncedSearch(query);
+    if(query.length > 0){
+      this.loadingSpan.innerText = 'Searching...';
+      
+    } 
   }
 
   async search(query) {
     if (query) {
       // Your code here
+      const res = await API.searchUsers(query);
+      this.renderResults(res);
+      this.loadingSpan.innerText = "";
     } else {
       // Your code here
+      this.renderResults([]);
     }
   }
 
@@ -47,12 +57,18 @@ export default class UsersSearch {
     const anchor = document.createElement("a");
     anchor.innerText = "@" + username;
     // Your code here
+    anchor.href = `/users/${id}`;
     return anchor;
   }
 
   createFollowButton({ id, following }) {
     const followButton = document.createElement("button");
     // Your code here
+    followButton.innerHTML = following ? "Unfollow!" : "Follow!"
+    followButton.setAttribute("data-user-id", id)
+    followButton.classList.add("follow-toggle")
+    followButton.setAttribute("data-follow-state", following ? "followed" : "unfollowed" )
+    new FollowToggle(followButton)
     return followButton;
   }
 }

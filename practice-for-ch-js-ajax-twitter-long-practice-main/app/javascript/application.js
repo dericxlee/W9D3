@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== "production") {
 
 let followToggleSelector = ".follow-toggle";
 let infiniteTweetsSelector = ".infinite-tweets";
-let usersSearchSelector = "";
+let usersSearchSelector = ".users-search";
 let tweetComposeSelector = "";
 let followersSelector = "";
 
